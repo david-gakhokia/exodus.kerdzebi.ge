@@ -55,11 +55,6 @@
                   <div class="form-group">
                     <div class="d-block">
                       <label for="password" class="control-label">პაროლი</label>
-                      <div class="float-right">
-                        <a href="auth-forgot-password.html" class="text-small">
-                          დაგავიწყდა პაროლი?
-                        </a>
-                      </div>
                     </div>
                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" tabindex="2" required autocomplete="current-password">
 
