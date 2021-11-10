@@ -35,9 +35,9 @@
                     </div>
 
                     @yield('content')
-                    
+
                     <div class="mt-5 text-muted text-center">
-                        Copyright &copy; {{ date('Y') }} <a href="https://diem.ge" target="_blank">DMG</a>
+                        Copyright &copy; {{ date('Y') }} <a href="https://diem.ge" target="_blank">DMG</a> <sup>®</sup>
                     </div>
                   </div>
                 </div>

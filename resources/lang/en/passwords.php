@@ -13,10 +13,10 @@ return [
     |
     */
 
-    'reset' => 'Your password has been reset!',
-    'sent' => 'We have emailed your password reset link!',
+    'reset' => 'თქვენი პაროლი აღდგენილია!',
+    'sent' => 'ჩვენ გამოგიგზავნეთ ელ.ფოსტაზე თქვენი პაროლის აღდგენის ბმული!',
     'throttled' => 'Please wait before retrying.',
     'token' => 'This password reset token is invalid.',
-    'user' => "We can't find a user with that email address.",
+    'user' => "ჩვენ ვერ ვიპოვით მომხმარებელს ამ ელ.ფოსტის მისამართით!",
 
 ];
