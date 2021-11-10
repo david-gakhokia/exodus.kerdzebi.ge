@@ -31,18 +31,18 @@ use App\Http\Controllers\Backend\AdminProductController;
 
 
 
-Route::get('/search', [SearchController::class, 'search'])->name('search');
-Route::get('/table_id/{id}', [HomeController::class, 'QrId']);
-Route::get('/language/{lan}', [HomeController::class, 'language']);
-Route::get('/products/{id}', [ProductController::class, 'index']);
+    Route::get('/search', [SearchController::class, 'search'])->name('search');
+    Route::get('/table_id/{id}', [HomeController::class, 'QrId']);
+    Route::get('/language/{lan}', [HomeController::class, 'language']);
+    Route::get('/products/{id}', [ProductController::class, 'index']);
 
 
 
-Route::post('/order', [OrderController::class, 'create']);
-Route::post('/order/updateQuantity', [OrderController::class, 'updateQuantity']);
-Route::get('/orders', [OrderController::class, 'FrontOrder']);
-Route::get('/order/destroy/{id}', [OrderController::class, 'destroy']);
-Route::get('/order/clearCart', [OrderController::class, 'clearCart']);
+    Route::post('/order', [OrderController::class, 'create']);
+    Route::post('/order/updateQuantity', [OrderController::class, 'updateQuantity']);
+    Route::get('/orders', [OrderController::class, 'FrontOrder']);
+    Route::get('/order/destroy/{id}', [OrderController::class, 'destroy']);
+    Route::get('/order/clearCart', [OrderController::class, 'clearCart']);
 
 
 
@@ -53,11 +53,11 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function() {
 
     Route::resource('dashboard', DashboardController::class);
 
-    //როლები
+//როლები
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
 
-    //პარამეტრები
+//პარამეტრები
 
     Route::get('setting',[SettingController::class,'index']);
     Route::post('setting',[SettingController::class,'save_settings']);
