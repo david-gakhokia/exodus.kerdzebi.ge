@@ -24,15 +24,10 @@ use App\Http\Controllers\Backend\AdminProductController;
 
 // Frontend Routes
 
-    // მთავარი გვერდი
-
 
     Route::get('/', [HomeController::class, 'index']);
-
-
-
-        Route::get('/menu', [HomeController::class, 'menu']);
-        Route::get('/product/{id}', [HomeController::class, 'product']);
+    Route::get('/menu', [HomeController::class, 'menu']);
+    Route::get('/product/{id}', [HomeController::class, 'product']);
 
 
 
@@ -58,9 +53,11 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function() {
 
     Route::resource('dashboard', DashboardController::class);
 
-
+    //როლები
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
+
+    //პარამეტრები
 
     Route::get('setting',[SettingController::class,'index']);
     Route::post('setting',[SettingController::class,'save_settings']);

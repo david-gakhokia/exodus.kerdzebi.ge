@@ -23,7 +23,6 @@ class HomeController extends Controller
 
         Alert::info('სისტემის განახლება', 'სერვერზე მიმდინარეობს ტექნიკური სამუშოები , ბოდიშს გიხდით შექმნილი უხერხულობისთვის');
         // Alert::toast('Toast Message', 'Toast Type');
-
         return view('frontend.pages.index');
     }
 
