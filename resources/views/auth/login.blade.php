@@ -29,9 +29,9 @@
       <div class="container mt-5">
         <div class="row">
           <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
-            <div class="text-center">
-                <img  src="{{ asset('backend/assets/img/logo/logo.png') }}" width="70%" alt="logo">
-              </div>
+                <div class="text-center">
+                    <img  src="{{ asset('backend/assets/img/logo/logo.png') }}" width="70%" alt="logo">
+                </div>
 
             <div class="card card-primary">
               <div class="card-header">
