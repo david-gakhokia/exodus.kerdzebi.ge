@@ -19,20 +19,18 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminProductController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     public function index()
     {
         $products = Product::latest()->paginate(500);
 
-        if (session('success_message'))
-        {
+        if (session('success_message')) {
             // Alert::success('Success!', session('success_message'));
             Alert::toast('პროდუქტი დაემატა', session('success_message'));
-
         }
         return view('backend.products.index', compact('products'));
     }
@@ -46,13 +44,13 @@ class AdminProductController extends Controller
     public function import()
     {
         $products = Product::all();
-        return view('backend.products.import',compact('products'));
+        return view('backend.products.import', compact('products'));
     }
 
     public function export()
     {
         $products = Product::all();
-        return view('backend.products.export',compact('products'));
+        return view('backend.products.export', compact('products'));
     }
 
 
@@ -93,7 +91,7 @@ class AdminProductController extends Controller
                 'description_en' => $request->description_en,
                 'description_ru' => $request->description_ru,
                 'numeric' => $request->numeric,
-                'created_at' => Carbon::now()
+                'created_at' => Carbon::now(),
             ]);
         } else {
 
@@ -132,35 +130,38 @@ class AdminProductController extends Controller
 
     public function update(Request $request)
     {
-        $validateData = $request->validate(
-            [
-                'status' => 'required',
-                'name_ka' => 'required|min:2',
-                'category_id' => 'required',
-                'price' => 'required',
-            ],
-            [
-                'name.required' => 'Name',
-                'image' => 'image',
-                'price' => 'price ',
+        try {
 
-            ]
-        );
 
-        $old_image = $request->old_image;
+            // $request->validate(
+            //     [
+            //         'status' => 'required',
+            //         'name_ka' => 'required',
+            //         'category_id' => 'required',
+            //         'price' => 'required',
+            //     ],
+            //     [
+            //         'name.required' => 'Name',
+            //         'image' => 'image',
+            //         'price' => 'price ',
 
-        $image = $request->file('image');
+            //     ]
+            // );
 
-        if ($image) {
+            $image = $request->file('image');
+            if ($image) {
 
-            $name_gen = hexdec(uniqid());
-            $img_ext = strtolower($image->getClientOriginalExtension());
-            $img_name = $name_gen . '.' . $img_ext;
-            $up_location = 'backend/images/products/';
-            $last_img = $up_location . $img_name;
-            $image->move($up_location, $img_name);
-            if (file_exists($old_image)) unlink($old_image);
+                $old_image = $request->old_image;
 
+
+                $name_gen = hexdec(uniqid());
+                $img_ext = strtolower($image->getClientOriginalExtension());
+                $img_name = $name_gen . '.' . $img_ext;
+                $up_location = 'backend/images/products/';
+                $last_img = $up_location . $img_name;
+                $image->move($up_location, $img_name);
+                if (file_exists($old_image)) unlink($old_image);
+            }
             Product::find($request->id)->update([
                 'status' => $request->status,
                 'name_ka' => $request->name_ka,
@@ -177,22 +178,9 @@ class AdminProductController extends Controller
             ]);
 
             return Redirect()->route('products')->with('success', 'პროდუქტი განახლდა');
-        } else {
-            Product::find($request->id)->update([
-                'status' => $request->status,
-                'name_ka' => $request->name_ka,
-                'name_en' => $request->name_en,
-                'name_ru' => $request->name_ru,
-                'category_id' => $request->category_id,
-                'price' => $request->price,
-                'description_ka' => $request->description_ka ? $request->description_ka : "",
-                'description_en' => $request->description_en ? $request->description_en : "",
-                'description_ru' => $request->description_ru ? $request->description_ru : "",
-                'numeric' => $request->numeric,
-                'created_at' => Carbon::now()
-            ]);
-
-            return Redirect()->route('products')->with('success', 'პროდუქტი განახლდა');
+            //code...
+        } catch (\Throwable $th) {
+            throw $th;
         }
     }
 
@@ -206,16 +194,15 @@ class AdminProductController extends Controller
 
     public function exportExcel($type)
     {
-        return Excel::download(new ProductsExport, 'products.'.$type);
+        return Excel::download(new ProductsExport, 'products.' . $type);
     }
 
     public function importExcel(Request $request)
     {
-        Excel::import(new ProductsImport,$request->import_file);
+        Excel::import(new ProductsImport, $request->import_file);
 
         Session::put('success', 'პროდუქცია წარმატებით აიტვირთა.');
 
         return back();
-
     }
 }

@@ -21,7 +21,8 @@
         "maatwebsite/excel": "^3.1",
         "realrashid/sweet-alert": "^4.1",
         "simplesoftwareio/simple-qrcode": "^4.2",
-        "spatie/laravel-permission": "^3.17"
+        "spatie/laravel-permission": "^3.17",
+        "vlucas/phpdotenv": "^5.4"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",

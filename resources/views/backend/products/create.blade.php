@@ -52,7 +52,7 @@
             </div>
             @endif
             <div class="card">
-                <form action="{{  route ('store.product') }}" class="needs-validation" novalidate="" method="POST"  enctype="multipart/form-data" >
+                <form action="{{  route('store.product') }}" class="needs-validation" novalidate="" method="post"  enctype="multipart/form-data" >
                     @csrf
                     <div class="card-header">
                         <h4>პროდუქციის დამატება </h4>
