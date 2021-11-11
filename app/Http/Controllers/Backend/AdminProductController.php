@@ -130,7 +130,7 @@ class AdminProductController extends Controller
         return view('backend.products.edit', compact('products', 'categories'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $validateData = $request->validate(
             [
@@ -161,7 +161,7 @@ class AdminProductController extends Controller
             $image->move($up_location, $img_name);
             if (file_exists($old_image)) unlink($old_image);
 
-            Product::find($id)->update([
+            Product::find($request->id)->update([
                 'status' => $request->status,
                 'name_ka' => $request->name_ka,
                 'name_en' => $request->name_en,
@@ -178,7 +178,7 @@ class AdminProductController extends Controller
 
             return Redirect()->route('products')->with('success', 'პროდუქტი განახლდა');
         } else {
-            Product::find($id)->update([
+            Product::find($request->id)->update([
                 'status' => $request->status,
                 'name_ka' => $request->name_ka,
                 'name_en' => $request->name_en,

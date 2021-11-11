@@ -54,9 +54,10 @@
     <div class="row">
         <div class="col-12 col-md-12 col-lg-12">
             <div class="card">
-                <form action="{{ url('admin/product/update/'.$products->id) }}" class="needs-validation" novalidate="" method="POST"  enctype="multipart/form-data" >
+                <form action="{{ route('product.update') }}" class="needs-validation" novalidate="" method="POST"  enctype="multipart/form-data" >
                     @csrf
                     <input type="hidden"  name="old_image" value="{{ $products->image }}">
+                    <input type="hidden"  name="id" value="{{ $products->id }}">
 
                     <div class="card-header">
                         <h4>პროდუქციის რედაქტირება </h4>

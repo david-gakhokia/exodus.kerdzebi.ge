@@ -18,6 +18,12 @@ class HomeController extends Controller
 {
 
 
+    public function test()
+    {
+        return "test";
+    }
+
+
     public function index()
     {
 

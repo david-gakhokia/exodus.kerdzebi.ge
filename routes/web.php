@@ -26,6 +26,10 @@ use App\Http\Controllers\Backend\AdminProductController;
 
 
     Route::get('/', [HomeController::class, 'index']);
+
+    Route::get('/test', [HomeController::class, 'test']);
+
+
     Route::get('/menu', [HomeController::class, 'menu']);
     Route::get('/product/{id}', [HomeController::class, 'product']);
 
@@ -77,7 +81,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function() {
     Route::post('product/create', [AdminProductController::class, 'store'])->name('store.product');
     Route::get('product/{id}', [AdminProductController::class, 'show']);
     Route::get('product/edit/{id}', [AdminProductController::class, 'edit']);
-    Route::post('product/update/{id}', [AdminProductController::class, 'update']);
+    Route::post('product/update', [AdminProductController::class, 'update'])->name('product.update');
     Route::get('product/destroy/{id}', [AdminProductController::class, 'destroy']);
     //იმპორტ-ექსპორტი
     Route::get('products/inport', [AdminProductController::class, 'import']);

@@ -92,7 +92,7 @@
                             <div class="col-3 form-group">
                                 <label for="category_id">კატეგორია</label>
                                 <select class="form-control select2" name="category_id" required>
-                                    <option value="">აირჩიეთ კატეგორია</option>
+                                    <option value="" disabled >აირჩიეთ კატეგორია</option>
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}" {{ $category->id === old('category_id') ? 'selected' : '' }}>{{ $category->name_ka }}</option>
                                         @if ($category->children)
